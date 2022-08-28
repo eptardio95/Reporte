@@ -15,7 +15,7 @@ class ErrorPage extends StatelessWidget {
 
         child: RaisedButton(
           onPressed: () {
-            print("Se envio la info del error al servidor para ser revisado");
+            print("Se envio la info del error al servidor para ser revisado1111");
           },
           child: Text("Reportar Error"),
 
