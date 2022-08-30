@@ -7,21 +7,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:inicial/controllers/main_controller.dart';
+
 
 import 'package:inicial/main.dart';
 
-void main() {
 
-  group("pruebas para main controller", () {
-    test('Prueba del presionado del boton', () {
-      expect(presionandoBoton(), "controlador presionado");
-    });
-    test("Calcular valor", () {
-      expect(calcularElementos(9), 600);
-    });
-
-  });
 
 
 
@@ -46,5 +36,5 @@ void main() {
   //   // Verify that our counter has incremented.
   //   expect(find.text('0'), findsNothing);
   //   expect(find.text('1'), findsOneWidget);
-  }
+
 
