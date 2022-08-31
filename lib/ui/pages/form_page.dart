@@ -20,6 +20,25 @@ class _FormularioState extends State<Formulario> {
 
   final reporteController = ReporteController();
 
+  static const menuItems = <String>[
+    "-- Seleccione el destinatario --",
+    "Eduardo",
+    "Marlon",
+    "Asmel",
+    "Yosbel"
+  ];
+
+  String _btnSelectedVal = "-- Seleccione el destinatario --";
+
+  final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
+      .map(
+        (String value) => DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        ),
+      )
+      .toList();
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +58,7 @@ class _FormularioState extends State<Formulario> {
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(children: <Widget>[
+            ///Chapa del carro///
             TextFormField(
               decoration: InputDecoration(
                   prefixIcon:
@@ -55,6 +75,8 @@ class _FormularioState extends State<Formulario> {
               controller: _chapaController,
             ),
             SizedBox(height: 8.0),
+
+            ///Odometro///
             TextFormField(
               decoration: InputDecoration(
                   prefixIcon:
@@ -71,6 +93,8 @@ class _FormularioState extends State<Formulario> {
               controller: _odometroController,
             ),
             SizedBox(height: 8.0),
+
+            ///Fecha///
             TextFormField(
               decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.date_range,
@@ -86,23 +110,10 @@ class _FormularioState extends State<Formulario> {
               },
               controller: _fechaController,
             ),
+
             SizedBox(height: 8.0),
-            TextFormField(
-              decoration: InputDecoration(
-                  prefixIcon:
-                      const Icon(Icons.route, color: Colors.blue, size: 45),
-                  // suffixIcon: const Icon(Icons.abc),
-                  labelText: 'Recorrido',
-                  border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor))),
-              onChanged: (value) {
-                reporteController.reporte.recorrido = value;
-                print(reporteController.reporte.recorrido);
-              },
-              controller: _recorridoController,
-            ),
-            SizedBox(height: 8.0),
+
+            ///Hora de Inicio///
             TextFormField(
               decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.access_time,
@@ -119,6 +130,8 @@ class _FormularioState extends State<Formulario> {
               controller: _horaInicioController,
             ),
             SizedBox(height: 8.0),
+
+            ///Hora de llegada///
             TextFormField(
               decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.access_time_filled,
@@ -134,21 +147,62 @@ class _FormularioState extends State<Formulario> {
               },
               controller: _horaLlegadaController,
             ),
+            SizedBox(height: 15.0),
+
+            ///Destinatario///
+            Column(children: <Widget>[
+              Container(
+                // decoration: BoxDecoration(color: Colors.red),
+                alignment: Alignment.topLeft,
+                child: const Text("Destinatario",
+                    style: TextStyle(color: Colors.blue, fontSize: 16.0)),
+              ),
+              DropdownButton<String>(
+                isExpanded: true,
+                value: _btnSelectedVal,
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    setState(() => _btnSelectedVal = newValue);
+
+                  }
+                },
+                items: _dropDownMenuItems,
+              ),
+            ]),
             SizedBox(height: 8.0),
+
+            ///Recorrido///
             TextFormField(
               decoration: InputDecoration(
                   prefixIcon:
-                      const Icon(Icons.person, color: Colors.blue, size: 45),
+                      const Icon(Icons.route, color: Colors.blue, size: 45),
                   // suffixIcon: const Icon(Icons.abc),
-                  labelText: 'Destinatario',
+                  labelText: 'Recorrido',
                   border: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).primaryColor))),
               onChanged: (value) {
-                reporteController.reporte.destinatario = value;
-                print(reporteController.reporte.destinatario);
+                reporteController.reporte.recorrido = value;
+                print(reporteController.reporte.recorrido);
               },
+              controller: _recorridoController,
             ),
+
+            // TextFormField(
+            //   decoration: InputDecoration(
+            //       prefixIcon:
+            //           const Icon(Icons.person, color: Colors.blue, size: 45),
+            //       // suffixIcon: const Icon(Icons.abc),
+            //       labelText: 'Destinatario',
+            //       border: OutlineInputBorder(
+            //           borderSide:
+            //               BorderSide(color: Theme.of(context).primaryColor))),
+            //   onChanged: (value) {
+            //     reporteController.reporte.destinatario = value;
+            //     print(reporteController.reporte.destinatario);
+            //   },
+            //   controller: _destinatarioController,
+            // ),
           ]),
         ),
       ),
