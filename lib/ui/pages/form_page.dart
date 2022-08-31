@@ -68,6 +68,7 @@ class _FormularioState extends State<Formulario> {
                 reporteController.reporte.odometro = value;
                 print(reporteController.reporte.odometro);
               },
+              controller: _odometroController,
             ),
             SizedBox(height: 8.0),
             TextFormField(
@@ -83,6 +84,7 @@ class _FormularioState extends State<Formulario> {
                 reporteController.reporte.fecha = value;
                 print(reporteController.reporte.fecha);
               },
+              controller: _fechaController,
             ),
             SizedBox(height: 8.0),
             TextFormField(
@@ -98,6 +100,7 @@ class _FormularioState extends State<Formulario> {
                 reporteController.reporte.recorrido = value;
                 print(reporteController.reporte.recorrido);
               },
+              controller: _recorridoController,
             ),
             SizedBox(height: 8.0),
             TextFormField(
@@ -113,6 +116,7 @@ class _FormularioState extends State<Formulario> {
                 reporteController.reporte.horaInicio = value;
                 print(reporteController.reporte.horaInicio);
               },
+              controller: _horaInicioController,
             ),
             SizedBox(height: 8.0),
             TextFormField(
@@ -128,6 +132,7 @@ class _FormularioState extends State<Formulario> {
                 reporteController.reporte.horaLlegada = value;
                 print(reporteController.reporte.horaLlegada);
               },
+              controller: _horaLlegadaController,
             ),
             SizedBox(height: 8.0),
             TextFormField(
