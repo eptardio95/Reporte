@@ -14,6 +14,7 @@ class ReporteController {
   ReporteController._internal();
 
   Reporte reporte = Reporte();
+  Telefonos telefonos = Telefonos();
 
   // ValueNotifier <List<PersonaModelo>> contactos = ValueNotifier<List<PersonaModelo>>(persons);
 }

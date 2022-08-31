@@ -15,11 +15,10 @@ class _HomePageState extends State<HomePage> {
   final reporteController = ReporteController();
   late Map<String, String?> mapaReporte;
   late String msg;
-  static const telefonoEduardo = "+5352886390";
 
   _textMe(msg) async {
 
-    String uri = 'sms:+${telefonoEduardo}?body=$msg';
+    String uri = 'sms:${reporteController.telefonos.telefonoEduardito}?body=$msg';
 
     await launch(uri);
   }
@@ -58,18 +57,12 @@ class _HomePageState extends State<HomePage> {
 
                   msg =
                   """Fecha: ${mapaReporte["Fecha"]}\nChapa: ${mapaReporte["Chapa"]}\nOdómetro: ${mapaReporte["Odómetro"]}\nHora de Inicio: ${mapaReporte["Hora de Inicio"]}\nHora de llegada: ${mapaReporte["Hora de llegada"]}\nRecorrido: ${mapaReporte["Recorrido"]}\nDestinatario: ${mapaReporte["Destinatario"]}""";
-                  print(msg);
+                  print(msg)
+
+
 
                   await _textMe(msg);
 
-
-                  // print(reporteController.reporte.chapa);
-                  // print(reporteController.reporte.odometro);
-                  // print(reporteController.reporte.fecha);
-                  // print(reporteController.reporte.recorrido);
-                  // print(reporteController.reporte.horaInicio);
-                  // print(reporteController.reporte.horaLlegada);
-                  // print(reporteController.reporte.destinatario);
                 },
                 tooltip: 'Increment',
                 child: const Icon(Icons.add),
