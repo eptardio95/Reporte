@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inicial/controllers/reporte_controller.dart';
 import 'package:inicial/models/reporte_modelo.dart';
 
 class Formulario extends StatefulWidget {
@@ -9,7 +10,6 @@ class Formulario extends StatefulWidget {
 }
 
 class _FormularioState extends State<Formulario> {
-
   late TextEditingController _chapaController;
   late TextEditingController _odometroController;
   late TextEditingController _fechaController;
@@ -18,7 +18,7 @@ class _FormularioState extends State<Formulario> {
   late TextEditingController _horaLlegadaController;
   late TextEditingController _destinatarioController;
 
-  final Reporte _reporte = Reporte();
+  final reporteController = ReporteController();
 
   @override
   void initState() {
@@ -30,9 +30,7 @@ class _FormularioState extends State<Formulario> {
     _horaInicioController = TextEditingController(text: "");
     _horaLlegadaController = TextEditingController(text: "");
     _destinatarioController = TextEditingController(text: "");
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +49,8 @@ class _FormularioState extends State<Formulario> {
                       borderSide:
                           BorderSide(color: Theme.of(context).primaryColor))),
               onChanged: (value) {
-                _reporte.chapa = value;
-
+                reporteController.reporte.chapa = value;
+                print(reporteController.reporte.chapa);
               },
               controller: _chapaController,
             ),
@@ -66,6 +64,10 @@ class _FormularioState extends State<Formulario> {
                   border: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).primaryColor))),
+              onChanged: (value) {
+                reporteController.reporte.odometro = value;
+                print(reporteController.reporte.odometro);
+              },
             ),
             SizedBox(height: 8.0),
             TextFormField(
@@ -77,6 +79,10 @@ class _FormularioState extends State<Formulario> {
                   border: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).primaryColor))),
+              onChanged: (value) {
+                reporteController.reporte.fecha = value;
+                print(reporteController.reporte.fecha);
+              },
             ),
             SizedBox(height: 8.0),
             TextFormField(
@@ -88,6 +94,10 @@ class _FormularioState extends State<Formulario> {
                   border: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).primaryColor))),
+              onChanged: (value) {
+                reporteController.reporte.recorrido = value;
+                print(reporteController.reporte.recorrido);
+              },
             ),
             SizedBox(height: 8.0),
             TextFormField(
@@ -99,6 +109,10 @@ class _FormularioState extends State<Formulario> {
                   border: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).primaryColor))),
+              onChanged: (value) {
+                reporteController.reporte.horaInicio = value;
+                print(reporteController.reporte.horaInicio);
+              },
             ),
             SizedBox(height: 8.0),
             TextFormField(
@@ -110,6 +124,10 @@ class _FormularioState extends State<Formulario> {
                   border: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).primaryColor))),
+              onChanged: (value) {
+                reporteController.reporte.horaLlegada = value;
+                print(reporteController.reporte.horaLlegada);
+              },
             ),
             SizedBox(height: 8.0),
             TextFormField(
@@ -121,6 +139,10 @@ class _FormularioState extends State<Formulario> {
                   border: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).primaryColor))),
+              onChanged: (value) {
+                reporteController.reporte.destinatario = value;
+                print(reporteController.reporte.destinatario);
+              },
             ),
           ]),
         ),

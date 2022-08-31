@@ -4,14 +4,16 @@ import 'package:inicial/models/reporte_modelo.dart';
 
 class ReporteController {
 
-  static List<Reporte> reportes = [
-    reporteInicial,
-    reporteInicial,
-  ];
 
-  static final ReporteController instancia = ReporteController._();
+  static final ReporteController _instance = ReporteController._internal();
 
-  ReporteController._();
+  factory ReporteController(){
+    return _instance;
+  }
+
+  ReporteController._internal();
+
+  Reporte reporte = Reporte();
 
   // ValueNotifier <List<PersonaModelo>> contactos = ValueNotifier<List<PersonaModelo>>(persons);
 }

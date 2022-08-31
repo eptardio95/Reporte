@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Reporte {
   String? chapa;
   String? odometro;
@@ -19,12 +17,5 @@ class Reporte {
       this.destinatario});
 }
 
-Reporte reporteInicial = Reporte(
-  chapa: "",
-  odometro: "",
-  fecha: "",
-  recorrido: "",
-  horaInicio: "",
-  horaLlegada: "",
-  destinatario: "",
-);
+
+
