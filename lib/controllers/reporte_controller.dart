@@ -18,5 +18,6 @@ class ReporteController {
   Telefonos telefonos = Telefonos();
 
   String? btnSelectedVal;
+  bool? checkVoidState;
 
 }
