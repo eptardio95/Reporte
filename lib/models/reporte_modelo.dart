@@ -20,16 +20,13 @@ class Reporte {
 }
 
 class Telefonos {
-  String? telefonoEduardito;
-  String? telefonoMarlon;
-  String? telefonoAsmel;
-  String? telefonoYosbel;
+  Map<String, String>? agenda;
 
   Telefonos(
-      {this.telefonoEduardito = "+5352886390",
-      this.telefonoMarlon = "+5352884868",
-      this.telefonoAsmel = "+5352886388",
-      this.telefonoYosbel = "+5352884444"});
+      {this.agenda = const {
+        "Eduardo": "+5352886390",
+        "Marlon": "+5352884868",
+        "Asmel": "+5352886388",
+        "Yosbel": "+5352884444"
+      }});
 }
-
-

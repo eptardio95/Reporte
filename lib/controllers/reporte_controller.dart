@@ -17,4 +17,6 @@ class ReporteController {
 
   Telefonos telefonos = Telefonos();
 
+  String? btnSelectedVal;
+
 }

@@ -3,7 +3,9 @@ import 'package:inicial/controllers/reporte_controller.dart';
 import 'package:inicial/models/reporte_modelo.dart';
 
 class Formulario extends StatefulWidget {
-  const Formulario({Key? key}) : super(key: key);
+  var btnSelectedVal;
+
+  Formulario({Key? key, this.btnSelectedVal}) : super(key: key);
 
   @override
   State<Formulario> createState() => _FormularioState();
@@ -20,7 +22,7 @@ class _FormularioState extends State<Formulario> {
 
   final reporteController = ReporteController();
 
-  static const menuItems = <String>[
+  static const destinatarioItems = <String>[
     "-- Seleccione el destinatario --",
     "Eduardo",
     "Marlon",
@@ -28,9 +30,9 @@ class _FormularioState extends State<Formulario> {
     "Yosbel"
   ];
 
-  String _btnSelectedVal = "-- Seleccione el destinatario --";
+  String btnSelectedVal = "-- Seleccione el destinatario --";
 
-  final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
+  final List<DropdownMenuItem<String>> _dropDownDestinatarioItems = destinatarioItems
       .map(
         (String value) => DropdownMenuItem<String>(
           value: value,
@@ -159,14 +161,16 @@ class _FormularioState extends State<Formulario> {
               ),
               DropdownButton<String>(
                 isExpanded: true,
-                value: _btnSelectedVal,
+                value: reporteController.btnSelectedVal,
                 onChanged: (String? newValue) {
                   if (newValue != null) {
-                    setState(() => _btnSelectedVal = newValue);
+                    setState(() =>  reporteController.btnSelectedVal = newValue);
+                    print(newValue);
+
 
                   }
                 },
-                items: _dropDownMenuItems,
+                items: _dropDownDestinatarioItems,
               ),
             ]),
             SizedBox(height: 8.0),
@@ -188,21 +192,6 @@ class _FormularioState extends State<Formulario> {
               controller: _recorridoController,
             ),
 
-            // TextFormField(
-            //   decoration: InputDecoration(
-            //       prefixIcon:
-            //           const Icon(Icons.person, color: Colors.blue, size: 45),
-            //       // suffixIcon: const Icon(Icons.abc),
-            //       labelText: 'Destinatario',
-            //       border: OutlineInputBorder(
-            //           borderSide:
-            //               BorderSide(color: Theme.of(context).primaryColor))),
-            //   onChanged: (value) {
-            //     reporteController.reporte.destinatario = value;
-            //     print(reporteController.reporte.destinatario);
-            //   },
-            //   controller: _destinatarioController,
-            // ),
           ]),
         ),
       ),

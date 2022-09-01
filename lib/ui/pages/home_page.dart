@@ -13,14 +13,35 @@ class _HomePageState extends State<HomePage> {
   String titulo = "Reporte App";
 
   final reporteController = ReporteController();
-  late Map<String, String?> mapaReporte;
-  late String msg;
 
-  _textMe(msg) async {
+  String? msg;
+  final Formulario formulario = Formulario();
+
+  _textMe(numero, msg) async {
+    print(reporteController.telefonos.agenda![numero]);
     String uri =
-        'sms:${reporteController.telefonos.telefonoEduardito}?body=$msg';
+        'sms:${reporteController.telefonos.agenda![numero].toString()}?body=$msg';
 
     await launch(uri);
+  }
+
+
+  @override
+  void initState(){
+
+    final Map<String, String?> mapaReporte = {
+      "Chapa": reporteController.reporte.chapa,
+      "Odómetro": reporteController.reporte.odometro,
+      "Fecha": reporteController.reporte.fecha,
+      "Recorrido": reporteController.reporte.recorrido,
+      "Hora de Inicio": reporteController.reporte.horaInicio,
+      "Hora de Llegada": reporteController.reporte.horaLlegada,
+      "Destinatario": reporteController.reporte.destinatario,
+    };
+
+    msg =
+    """Fecha: ${mapaReporte["Fecha"]}\nChapa: ${mapaReporte["Chapa"]}\nOdómetro: ${mapaReporte["Odómetro"]}\nHora de Inicio: ${mapaReporte["Hora de Inicio"]}\nHora de llegada: ${mapaReporte["Hora de llegada"]}\nRecorrido: ${mapaReporte["Recorrido"]}\nDestinatario: ${mapaReporte["Destinatario"]}""";
+    super.initState();
   }
 
   @override
@@ -42,8 +63,8 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context) {
             return FloatingActionButton(
               onPressed: () async {
-                /// Show dialog ///
 
+                /// Show dialog ///
                 await showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
@@ -58,25 +79,16 @@ class _HomePageState extends State<HomePage> {
                       TextButton(
                         onPressed: () => {
                           Navigator.pop(context),
-                          _textMe(msg)},
+                          _textMe(reporteController.btnSelectedVal, msg),
+
+
+                        },
                         child: const Text('Enviar'),
                       ),
                     ],
                   ),
                 );
-                mapaReporte = {
-                  "Chapa": reporteController.reporte.chapa,
-                  "Odómetro": reporteController.reporte.odometro,
-                  "Fecha": reporteController.reporte.fecha,
-                  "Recorrido": reporteController.reporte.recorrido,
-                  "Hora de Inicio": reporteController.reporte.horaInicio,
-                  "Hora de Llegada": reporteController.reporte.horaLlegada,
-                  "Destinatario": reporteController.reporte.destinatario,
-                };
 
-                msg =
-                    """Fecha: ${mapaReporte["Fecha"]}\nChapa: ${mapaReporte["Chapa"]}\nOdómetro: ${mapaReporte["Odómetro"]}\nHora de Inicio: ${mapaReporte["Hora de Inicio"]}\nHora de llegada: ${mapaReporte["Hora de llegada"]}\nRecorrido: ${mapaReporte["Recorrido"]}\nDestinatario: ${mapaReporte["Destinatario"]}""";
-                print(msg);
               },
               tooltip: 'Increment',
               child: const Icon(Icons.add),
