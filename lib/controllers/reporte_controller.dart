@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inicial/models/reporte_modelo.dart';
+import 'package:inicial/services/void_state_validator.dart';
 
 
 class ReporteController {
@@ -18,6 +19,28 @@ class ReporteController {
   Telefonos telefonos = Telefonos();
 
   String? btnSelectedVal;
-  bool? checkVoidState;
+
+  String? msg;
+
+  bool validateIsEmpty() {
+    if (reporte.chapa != null &&
+        reporte.odometro != null &&
+        reporte.fecha != null &&
+        reporte.horaInicio != null &&
+        reporte.horaLlegada != null &&
+        reporte.destinatario != null &&
+        reporte.destinatario != null) {
+      print("Ninguno esta vacio");
+
+      return false;
+    } else {
+      print("Aun alguno esta vacio EMPTY");
+      return true;
+    }
+  }
+
+
 
 }
+
+

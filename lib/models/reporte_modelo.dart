@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:inicial/controllers/reporte_controller.dart';
+
+import '../controllers/reporte_controller.dart';
 
 class Reporte {
   String? chapa;
@@ -8,6 +11,7 @@ class Reporte {
   String? horaInicio;
   String? horaLlegada;
   String? destinatario;
+  String? msg;
 
   Reporte(
       {this.chapa,

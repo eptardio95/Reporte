@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:inicial/controllers/reporte_controller.dart';
+import 'package:inicial/services/void_state_validator.dart';
 import 'package:inicial/ui/pages/form_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../models/reporte_modelo.dart';
@@ -21,27 +22,23 @@ class _HomePageState extends State<HomePage> {
     print(reporteController.telefonos.agenda![numero]);
     String uri =
         'sms:${reporteController.telefonos.agenda![numero].toString()}?body=$msg';
-
     await launch(uri);
   }
 
-
   @override
-  void initState(){
+  void initState() {
 
-    final Map<String, String?> mapaReporte = {
-      "Chapa": reporteController.reporte.chapa,
-      "Odómetro": reporteController.reporte.odometro,
-      "Fecha": reporteController.reporte.fecha,
-      "Recorrido": reporteController.reporte.recorrido,
-      "Hora de Inicio": reporteController.reporte.horaInicio,
-      "Hora de Llegada": reporteController.reporte.horaLlegada,
-      "Destinatario": reporteController.reporte.destinatario,
-    };
+    // Map <String, String?> mapaReporte = {
+    //   "Chapa": reporteController.reporte.chapa,
+    //   "Odómetro": reporteController.reporte.odometro,
+    //   "Fecha": reporteController.reporte.fecha,
+    //   "Recorrido": reporteController.reporte.recorrido,
+    //   "Hora de Inicio": reporteController.reporte.horaInicio,
+    //   "Hora de Llegada": reporteController.reporte.horaLlegada,
+    //   "Destinatario": reporteController.reporte.destinatario,
+    // };
 
-    msg =
-    """Fecha: ${mapaReporte["Fecha"]}\nChapa: ${mapaReporte["Chapa"]}\nOdómetro: ${mapaReporte["Odómetro"]}\nHora de Inicio: ${mapaReporte["Hora de Inicio"]}\nHora de llegada: ${mapaReporte["Hora de llegada"]}\nRecorrido: ${mapaReporte["Recorrido"]}\nDestinatario: ${mapaReporte["Destinatario"]}""";
-    super.initState();
+        super.initState();
   }
 
   @override
@@ -63,7 +60,6 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context) {
             return FloatingActionButton(
               onPressed: () async {
-
                 /// Show dialog ///
                 await showDialog<String>(
                   context: context,
@@ -79,16 +75,29 @@ class _HomePageState extends State<HomePage> {
                       TextButton(
                         onPressed: () => {
                           Navigator.pop(context),
-                          _textMe(reporteController.btnSelectedVal, msg),
+                          print("chapa ${reporteController.reporte.chapa}"),
+                          print("odometro ${reporteController.reporte.odometro}"),
+                          print(" hora i${reporteController.reporte.horaInicio}"),
+                          print("hora f ${reporteController.reporte.horaLlegada}"),
+                          print("destin ${reporteController.reporte.destinatario}"),
+                          print("recorr ${reporteController.reporte.recorrido}"),
 
+                          if (reporteController.validateIsEmpty())
+                            {print("Existe algun campo vacio")}
+                          else
+                            {
+                              print("No existen campos vacios"),
+                              msg =
+                              """Fecha: ${reporteController.reporte.fecha}\nChapa: ${reporteController.reporte.chapa}\nOdómetro: ${reporteController.reporte.odometro}\nHora de Inicio: ${reporteController.reporte.horaInicio}\nHora de llegada: ${reporteController.reporte.horaLlegada}\nRecorrido: ${reporteController.reporte.recorrido}\nDestinatario: ${reporteController.reporte.destinatario}""",
 
+                            _textMe(reporteController.reporte.destinatario, msg),
+                            }
                         },
                         child: const Text('Enviar'),
                       ),
                     ],
                   ),
                 );
-
               },
               tooltip: 'Increment',
               child: const Icon(Icons.add),

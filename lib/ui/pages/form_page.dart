@@ -3,9 +3,9 @@ import 'package:inicial/controllers/reporte_controller.dart';
 import 'package:inicial/models/reporte_modelo.dart';
 
 class Formulario extends StatefulWidget {
-  var btnSelectedVal;
 
-  Formulario({Key? key, this.btnSelectedVal}) : super(key: key);
+
+  Formulario({Key? key}) : super(key: key);
 
   @override
   State<Formulario> createState() => _FormularioState();
@@ -23,14 +23,13 @@ class _FormularioState extends State<Formulario> {
   final reporteController = ReporteController();
 
   static const destinatarioItems = <String>[
-    "-- Seleccione el destinatario --",
     "Eduardo",
     "Marlon",
     "Asmel",
     "Yosbel"
   ];
 
-  String btnSelectedVal = "-- Seleccione el destinatario --";
+
 
   final List<DropdownMenuItem<String>> _dropDownDestinatarioItems = destinatarioItems
       .map(
@@ -72,7 +71,7 @@ class _FormularioState extends State<Formulario> {
                           BorderSide(color: Theme.of(context).primaryColor))),
               onChanged: (value) {
                 reporteController.reporte.chapa = value;
-                print(reporteController.reporte.chapa);
+
               },
               controller: _chapaController,
             ),
@@ -90,7 +89,6 @@ class _FormularioState extends State<Formulario> {
                           BorderSide(color: Theme.of(context).primaryColor))),
               onChanged: (value) {
                 reporteController.reporte.odometro = value;
-                print(reporteController.reporte.odometro);
               },
               controller: _odometroController,
             ),
@@ -108,7 +106,6 @@ class _FormularioState extends State<Formulario> {
                           BorderSide(color: Theme.of(context).primaryColor))),
               onChanged: (value) {
                 reporteController.reporte.fecha = value;
-                print(reporteController.reporte.fecha);
               },
               controller: _fechaController,
             ),
@@ -127,7 +124,6 @@ class _FormularioState extends State<Formulario> {
                           BorderSide(color: Theme.of(context).primaryColor))),
               onChanged: (value) {
                 reporteController.reporte.horaInicio = value;
-                print(reporteController.reporte.horaInicio);
               },
               controller: _horaInicioController,
             ),
@@ -145,7 +141,6 @@ class _FormularioState extends State<Formulario> {
                           BorderSide(color: Theme.of(context).primaryColor))),
               onChanged: (value) {
                 reporteController.reporte.horaLlegada = value;
-                print(reporteController.reporte.horaLlegada);
               },
               controller: _horaLlegadaController,
             ),
@@ -161,13 +156,10 @@ class _FormularioState extends State<Formulario> {
               ),
               DropdownButton<String>(
                 isExpanded: true,
-                value: reporteController.btnSelectedVal,
-                onChanged: (String? newValue) {
-                  if (newValue != null) {
-                    setState(() =>  reporteController.btnSelectedVal = newValue);
-                    print(newValue);
-
-
+                value: reporteController.reporte.destinatario,
+                onChanged: (String? value) {
+                  if (value != null) {
+                    reporteController.reporte.destinatario = value;
                   }
                 },
                 items: _dropDownDestinatarioItems,
@@ -187,7 +179,6 @@ class _FormularioState extends State<Formulario> {
                           BorderSide(color: Theme.of(context).primaryColor))),
               onChanged: (value) {
                 reporteController.reporte.recorrido = value;
-                print(reporteController.reporte.recorrido);
               },
               controller: _recorridoController,
             ),
