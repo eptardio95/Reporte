@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inicial/controllers/reporte_controller.dart';
 import 'package:inicial/models/reporte_modelo.dart';
+import 'package:inicial/ui/widgets/dropdown_button_widget.dart';
 
 class Formulario extends StatefulWidget {
 
@@ -21,23 +22,11 @@ class _FormularioState extends State<Formulario> {
 
   final reporteController = ReporteController();
 
-  static const destinatarioItems = <String>[
-    "Eduardo",
-    "Marlon",
-    "Asmel",
-    "Yosbel"
-  ];
 
 
 
-  final List<DropdownMenuItem<String>> _dropDownDestinatarioItems = destinatarioItems
-      .map(
-        (String value) => DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        ),
-      )
-      .toList();
+
+
 
   @override
   void initState() {
@@ -145,26 +134,8 @@ class _FormularioState extends State<Formulario> {
             SizedBox(height: 15.0),
 
             ///Destinatario///
-            Column(children: <Widget>[
-              Container(
-                // decoration: BoxDecoration(color: Colors.red),
-                alignment: Alignment.topLeft,
-                child: const Text("Destinatario",
-                    style: TextStyle(color: Colors.blue, fontSize: 16.0)),
-              ),
-              DropdownButton<String>(
-                isExpanded: true,
-                value: reporteController.reporte.destinatario,
-                onChanged: (String? value) {
-                  if (value != null) {
-                    reporteController.reporte.destinatario = value;
-                  }
-                },
+            DropdownButtonWidget(),
 
-                items: _dropDownDestinatarioItems,
-              ),
-
-            ]),
             SizedBox(height: 8.0),
 
             ///Recorrido///
