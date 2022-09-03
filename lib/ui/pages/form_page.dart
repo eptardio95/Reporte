@@ -18,7 +18,6 @@ class _FormularioState extends State<Formulario> {
   late TextEditingController _recorridoController;
   late TextEditingController _horaInicioController;
   late TextEditingController _horaLlegadaController;
-  late TextEditingController _destinatarioController;
 
   final reporteController = ReporteController();
 
@@ -49,7 +48,6 @@ class _FormularioState extends State<Formulario> {
     _recorridoController = TextEditingController(text: "");
     _horaInicioController = TextEditingController(text: "");
     _horaLlegadaController = TextEditingController(text: "");
-    _destinatarioController = TextEditingController(text: "");
   }
 
   @override
@@ -162,8 +160,10 @@ class _FormularioState extends State<Formulario> {
                     reporteController.reporte.destinatario = value;
                   }
                 },
+
                 items: _dropDownDestinatarioItems,
               ),
+
             ]),
             SizedBox(height: 8.0),
 
