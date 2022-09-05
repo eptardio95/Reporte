@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:inicial/controllers/reporte_controller.dart';
 import 'package:inicial/models/reporte_modelo.dart';
-import 'package:inicial/ui/widgets/dropdown_button_widget.dart';
+import 'package:inicial/ui/widgets/chapa_dropdown_button_widget.dart';
+import 'package:inicial/ui/widgets/destinatario_dropdown_button_widget.dart';
+import 'package:inicial/ui/widgets/recorrido_textfield_widget.dart';
+
+import '../widgets/hora_inicio_widget.dart';
+import '../widgets/hora_llegada_widget.dart';
 
 class Formulario extends StatefulWidget {
-
-
   Formulario({Key? key}) : super(key: key);
 
   @override
@@ -22,12 +25,6 @@ class _FormularioState extends State<Formulario> {
 
   final reporteController = ReporteController();
 
-
-
-
-
-
-
   @override
   void initState() {
     super.initState();
@@ -41,39 +38,32 @@ class _FormularioState extends State<Formulario> {
 
   @override
   Widget build(BuildContext context) {
+    reporteController.reporte.horaInicio = "08:00 AM";
+    reporteController.reporte.horaLlegada = "05:00 PM";
+
     return SingleChildScrollView(
       child: Form(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(children: <Widget>[
-            ///Chapa del carro///
-            TextFormField(
-              decoration: InputDecoration(
-                  prefixIcon:
-                      const Icon(Icons.abc, color: Colors.blue, size: 45),
-                  // suffixIcon:,
-                  labelText: 'Chapa del carro',
-                  border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor))),
-              onChanged: (value) {
-                reporteController.reporte.chapa = value;
 
-              },
-              controller: _chapaController,
-            ),
+            ///Chapa del carro///
+            ChapaDropdownButtonWidget(),
+
             SizedBox(height: 8.0),
 
             ///Odometro///
             TextFormField(
               decoration: InputDecoration(
                   prefixIcon:
-                      const Icon(Icons.numbers, color: Colors.blue, size: 45),
+                  const Icon(Icons.numbers, color: Colors.blue, size: 45),
                   // suffixIcon: const Icon(Icons.abc),
                   labelText: "Odómetro Final",
                   border: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor))),
+                      BorderSide(color: Theme
+                          .of(context)
+                          .primaryColor))),
               onChanged: (value) {
                 reporteController.reporte.odometro = value;
               },
@@ -90,9 +80,17 @@ class _FormularioState extends State<Formulario> {
                   labelText: 'Fecha',
                   border: OutlineInputBorder(
                       borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor))),
+                      BorderSide(color: Theme
+                          .of(context)
+                          .primaryColor))),
               onChanged: (value) {
                 reporteController.reporte.fecha = value;
+                // final String now = DateTime.now().day.toString();
+                final DateTime now = DateTime.now();
+                final String fechaHoy = "${now.day}/${now.month}/${now.year}";
+                setState(() =>
+                reporteController.reporte.fecha = fechaHoy
+                );
               },
               controller: _fechaController,
             ),
@@ -100,60 +98,24 @@ class _FormularioState extends State<Formulario> {
             SizedBox(height: 8.0),
 
             ///Hora de Inicio///
-            TextFormField(
-              decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.access_time,
-                      color: Colors.blue, size: 45),
-                  // suffixIcon: const Icon(Icons.abc),
-                  labelText: 'Hora de Inicio',
-                  border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor))),
-              onChanged: (value) {
-                reporteController.reporte.horaInicio = value;
-              },
-              controller: _horaInicioController,
-            ),
+
+            HoraInicioWidget(),
+
             SizedBox(height: 8.0),
 
             ///Hora de llegada///
-            TextFormField(
-              decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.access_time_filled,
-                      color: Colors.blue, size: 45),
-                  // suffixIcon: const Icon(Icons.abc),
-                  labelText: 'Hora de llegada',
-                  border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor))),
-              onChanged: (value) {
-                reporteController.reporte.horaLlegada = value;
-              },
-              controller: _horaLlegadaController,
-            ),
+
+            HoraLlegadaWidget(),
+
             SizedBox(height: 15.0),
 
             ///Destinatario///
-            DropdownButtonWidget(),
+            DestinatarioDropdownButtonWidget(),
 
             SizedBox(height: 8.0),
 
             ///Recorrido///
-            TextFormField(
-              decoration: InputDecoration(
-                  prefixIcon:
-                      const Icon(Icons.route, color: Colors.blue, size: 45),
-                  // suffixIcon: const Icon(Icons.abc),
-                  labelText: 'Recorrido',
-                  border: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Theme.of(context).primaryColor))),
-              onChanged: (value) {
-                reporteController.reporte.recorrido = value;
-              },
-              controller: _recorridoController,
-            ),
-
+            RecorridoTextfieldWidget(),
           ]),
         ),
       ),
