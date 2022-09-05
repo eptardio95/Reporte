@@ -5,8 +5,10 @@ import 'package:inicial/ui/widgets/chapa_dropdown_button_widget.dart';
 import 'package:inicial/ui/widgets/destinatario_dropdown_button_widget.dart';
 import 'package:inicial/ui/widgets/recorrido_textfield_widget.dart';
 
+import '../widgets/fecha_widget.dart';
 import '../widgets/hora_inicio_widget.dart';
 import '../widgets/hora_llegada_widget.dart';
+import '../widgets/odometro_widget.dart';
 
 class Formulario extends StatefulWidget {
   Formulario({Key? key}) : super(key: key);
@@ -16,36 +18,27 @@ class Formulario extends StatefulWidget {
 }
 
 class _FormularioState extends State<Formulario> {
-  late TextEditingController _chapaController;
-  late TextEditingController _odometroController;
-  late TextEditingController _fechaController;
-  late TextEditingController _recorridoController;
-  late TextEditingController _horaInicioController;
-  late TextEditingController _horaLlegadaController;
+
 
   final reporteController = ReporteController();
 
   @override
   void initState() {
     super.initState();
-    _chapaController = TextEditingController(text: "");
-    _odometroController = TextEditingController(text: "");
-    _fechaController = TextEditingController(text: "");
-    _recorridoController = TextEditingController(text: "");
-    _horaInicioController = TextEditingController(text: "");
-    _horaLlegadaController = TextEditingController(text: "");
   }
 
   @override
   Widget build(BuildContext context) {
-    reporteController.reporte.horaInicio = "08:00 AM";
-    reporteController.reporte.horaLlegada = "05:00 PM";
+    reporteController.reporte.horaInicio = "__:__ AM";
+    reporteController.reporte.horaLlegada = "__:__ PM";
+    reporteController.reporte.fecha = "__/__";
+    reporteController.odometroController.odometroController = TextEditingController(text: "");
 
     return SingleChildScrollView(
       child: Form(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
-          child: Column(children: <Widget>[
+          child: Column(children: const <Widget>[
 
             ///Chapa del carro///
             ChapaDropdownButtonWidget(),
@@ -53,47 +46,12 @@ class _FormularioState extends State<Formulario> {
             SizedBox(height: 8.0),
 
             ///Odometro///
-            TextFormField(
-              decoration: InputDecoration(
-                  prefixIcon:
-                  const Icon(Icons.numbers, color: Colors.blue, size: 45),
-                  // suffixIcon: const Icon(Icons.abc),
-                  labelText: "Odómetro Final",
-                  border: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Theme
-                          .of(context)
-                          .primaryColor))),
-              onChanged: (value) {
-                reporteController.reporte.odometro = value;
-              },
-              controller: _odometroController,
-            ),
+            OdometroWidget(),
+
             SizedBox(height: 8.0),
 
             ///Fecha///
-            TextFormField(
-              decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.date_range,
-                      color: Colors.blue, size: 45),
-                  // suffixIcon: const Icon(Icons.abc),
-                  labelText: 'Fecha',
-                  border: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Theme
-                          .of(context)
-                          .primaryColor))),
-              onChanged: (value) {
-                reporteController.reporte.fecha = value;
-                // final String now = DateTime.now().day.toString();
-                final DateTime now = DateTime.now();
-                final String fechaHoy = "${now.day}/${now.month}/${now.year}";
-                setState(() =>
-                reporteController.reporte.fecha = fechaHoy
-                );
-              },
-              controller: _fechaController,
-            ),
+            FechaWidget(),
 
             SizedBox(height: 8.0),
 

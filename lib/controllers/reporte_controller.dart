@@ -22,6 +22,8 @@ class ReporteController {
 
   String? msg;
 
+  TextEditControllerModelo odometroController = TextEditControllerModelo();
+
   bool validateIsEmpty() {
     if (reporte.chapa != null &&
         reporte.odometro != null &&

@@ -38,7 +38,7 @@ class _HoraLlegadaWidgetState extends State<HoraLlegadaWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Icon(Icons.access_time_filled,
-                color: Colors.blue, size: 45),
+                color: Colors.blue, size: 40),
             // SizedBox(width: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,7 +51,7 @@ class _HoraLlegadaWidgetState extends State<HoraLlegadaWidget> {
                         child: Text(
                             reporteController.reporte.horaLlegada
                                 .toString(),
-                            style: TextStyle(fontSize: 22)))),
+                            style: TextStyle(fontSize: 20)))),
                 SizedBox(
                   width: 8.0,
                 ),

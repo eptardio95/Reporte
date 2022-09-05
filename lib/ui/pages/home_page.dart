@@ -86,9 +86,10 @@ class _HomePageState extends State<HomePage> {
                             {print("Existe algun campo vacio")}
                           else
                             {
-                              print("No existen campos vacios"),
+                              print(reporteController.reporte.fecha.toString()),
+
                               msg =
-                              """Fecha: ${reporteController.reporte.fecha}\nChapa: ${reporteController.reporte.chapa}\nOdómetro: ${reporteController.reporte.odometro}\nHora de Inicio: ${reporteController.reporte.horaInicio}\nHora de llegada: ${reporteController.reporte.horaLlegada}\nRecorrido: ${reporteController.reporte.recorrido}\nDestinatario: ${reporteController.reporte.destinatario}""",
+                              """${reporteController.reporte.fecha}\nChapa: ${reporteController.reporte.chapa}\nOdometro: ${reporteController.reporte.odometro}\nH. Inicio: ${reporteController.reporte.horaInicio}\nH. Llegada: ${reporteController.reporte.horaLlegada}\nRecorrido: ${reporteController.reporte.recorrido}""",
 
                             _textMe(reporteController.reporte.destinatario, msg),
                             }
@@ -100,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                 );
               },
               tooltip: 'Increment',
-              child: const Icon(Icons.add),
+              child: const Icon(Icons.message_sharp),
             );
           },
         ),

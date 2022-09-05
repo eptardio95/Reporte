@@ -34,3 +34,13 @@ class Telefonos {
         "Yosbel": "+5352884444"
       }});
 }
+
+class TextEditControllerModelo {
+
+  TextEditingController? odometroController;
+
+  TextEditControllerModelo({
+    this.odometroController
+});
+
+}

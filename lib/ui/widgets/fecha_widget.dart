@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:inicial/controllers/reporte_controller.dart';
 
+import '../../controllers/reporte_controller.dart';
 
-class HoraInicioWidget extends StatefulWidget {
-  const HoraInicioWidget({Key? key}) : super(key: key);
+class FechaWidget extends StatefulWidget {
+  const FechaWidget({Key? key}) : super(key: key);
 
   @override
-  State<HoraInicioWidget> createState() => _HoraInicioWidgetState();
+  State<FechaWidget> createState() => _FechaWidgetState();
 }
 
-class _HoraInicioWidgetState extends State<HoraInicioWidget> {
-
+class _FechaWidgetState extends State<FechaWidget> {
   ReporteController reporteController = ReporteController();
 
   @override
@@ -24,7 +23,7 @@ class _HoraInicioWidgetState extends State<HoraInicioWidget> {
         Row(
           children: [
             Text(
-              "Hora de Inicio",
+              "Fecha del Reporte",
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontSize: 16.0,
@@ -37,19 +36,17 @@ class _HoraInicioWidgetState extends State<HoraInicioWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Icon(Icons.access_time, color: Colors.blue, size: 40),
+            Icon(Icons.calendar_month, color: Colors.blue, size: 35),
             // SizedBox(width: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                     decoration: BoxDecoration(
-                      // border: Border.all(color: Colors.black),
-                    ),
+                        // border: Border.all(color: Colors.black),
+                        ),
                     child: Center(
-                        child: Text(
-                            reporteController.reporte.horaInicio
-                                .toString(),
+                        child: Text("${reporteController.reporte.fecha!}/${DateTime.now().year}",
                             style: TextStyle(fontSize: 20)))),
                 SizedBox(
                   width: 8.0,
@@ -61,24 +58,25 @@ class _HoraInicioWidgetState extends State<HoraInicioWidget> {
                     style: OutlinedButton.styleFrom(
                         side: BorderSide(color: Colors.grey)),
                     onPressed: () {
-                      // final DateTime now = DateTime.now();
-                      showTimePicker(
+                      showDatePicker(
                         context: context,
-                        initialTime: TimeOfDay(hour: 8, minute: 0),
-                      ).then((TimeOfDay? value) {
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2018),
+                        lastDate: DateTime(2025),
+                      ).then((DateTime? value) {
                         if (value != null) {
-                          print(value.format(context).toString());
+                          DateTime _fromDate = DateTime.now();
+                          _fromDate = value;
                           setState(() {
-                            reporteController.reporte.horaInicio =
-                                value.format(context).toString();
+                            reporteController.reporte.fecha =
+                                "${value.day}/${value.month}";
                           });
+                          // final String date = DateFormat.yMMMd().format(_fromDate);
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
+                              content: Text('Fecha seleccionada correctamente',
+                                  style: TextStyle(fontSize: 14)),
                               backgroundColor: Colors.blue,
-                              content: Text(
-                                "Hora de Inicio agregada correctamente",
-                                style: TextStyle(fontSize: 14),
-                              ),
                               action: SnackBarAction(
                                   label: 'OK',
                                   textColor: Colors.white,
@@ -91,9 +89,9 @@ class _HoraInicioWidgetState extends State<HoraInicioWidget> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.wb_sunny),
+                        Icon(Icons.calendar_month),
                         Text(
-                          'Seleccionar Hora',
+                          'Seleccionar Fecha',
                           style: TextStyle(fontSize: 16.0),
                         ),
                       ],
@@ -108,4 +106,3 @@ class _HoraInicioWidgetState extends State<HoraInicioWidget> {
     );
   }
 }
-
