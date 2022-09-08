@@ -3,6 +3,7 @@ import 'package:inicial/controllers/reporte_controller.dart';
 import 'package:inicial/models/reporte_modelo.dart';
 import 'package:inicial/ui/widgets/chapa_dropdown_button_widget.dart';
 import 'package:inicial/ui/widgets/destinatario_dropdown_button_widget.dart';
+import 'package:inicial/ui/widgets/pasajeros_widget.dart';
 import 'package:inicial/ui/widgets/recorrido_textfield_widget.dart';
 
 import '../widgets/fecha_widget.dart';
@@ -74,6 +75,10 @@ class _FormularioState extends State<Formulario> {
 
             ///Recorrido///
             RecorridoTextfieldWidget(),
+
+            SizedBox(height: 8.0),
+
+            PasajerosWidget(),
           ]),
         ),
       ),
