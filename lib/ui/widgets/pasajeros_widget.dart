@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inicial/ui/widgets/pasajeros_listview_widget.dart';
 
 class PasajerosWidget extends StatefulWidget {
   const PasajerosWidget({Key? key}) : super(key: key);
@@ -16,76 +17,35 @@ class _PasajerosWidgetState extends State<PasajerosWidget> {
           border: Border.all(color: Theme.of(context).primaryColor)),
       padding: EdgeInsets.fromLTRB(6, 3, 6, 3),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Seleccione los pasajeros:",
+          Text("Pasajeros:",
               style: TextStyle(
-                  color: Theme.of(context).primaryColor, fontSize: 15)),
+                  color: Theme.of(context).primaryColor, fontSize: 16)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
                 child: OutlinedButton(
                   onPressed: () {},
-                  child: Text("Especialistas", style: TextStyle(fontSize: 16)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.person_add_sharp, size: 30),
+                      SizedBox(width: 8.0),
+                      Text("Seleccione los pasajeros", style: TextStyle(fontSize: 16)),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(width: 8),
-              Expanded(
-                child: OutlinedButton(
-                    onPressed: () {},
-                    child: Text("Torreros", style: TextStyle(fontSize: 16))),
               ),
             ],
           ),
-          Container(
-            child: Column(
-              children: [
-                Row(
-                  children: [
 
-                    Icon(Icons.check_box_outlined),
-                    Text("1"),
-                    Icon(Icons.check_box_outlined),
-                    Text("A"),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.check_box_outlined),
-                    Text("2"),
-                    Icon(Icons.check_box_outlined),
-                    Text("A"),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.check_box_outlined),
-                    Text("3"),
-                    Icon(Icons.check_box_outlined),
-                    Text("A"),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.check_box_outlined),
-                    Text("4"),
-                    Icon(Icons.check_box_outlined),
-                    Text("A"),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.check_box_outlined),
-                    Text("5"),
-                    Icon(Icons.check_box_outlined),
-                    Text("A"),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
+          ListViewBuilderExample(),
+
+          ],
       ),
+
     );
   }
 }

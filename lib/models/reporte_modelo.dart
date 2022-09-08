@@ -36,11 +36,28 @@ class Telefonos {
 }
 
 class TextEditControllerModelo {
-
   TextEditingController? odometroController;
 
-  TextEditControllerModelo({
-    this.odometroController
-});
+  TextEditControllerModelo({this.odometroController});
+}
 
+class Pasajeros {
+
+  List<String>? pasajerosList;
+
+  Pasajeros({
+
+    this.pasajerosList = const [
+      "Yosbel Sosa",
+      "Eduardo Perez",
+      "Marlon Morales",
+      "Eduardo Hernandez",
+      "Leopoldo Lage",
+      "Asmel Lucena",
+      "Angel Santiago",
+      "Yosvel Camejo",
+      "Jose Cubilla",
+      "Norelvis",
+    ]
+  });
 }

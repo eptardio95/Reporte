@@ -41,6 +41,7 @@ class ReporteController {
     }
   }
 
+  Pasajeros pasajeros = Pasajeros();
 
 
 }
