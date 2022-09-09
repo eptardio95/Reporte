@@ -42,22 +42,42 @@ class TextEditControllerModelo {
 }
 
 class Pasajeros {
-
   List<String>? pasajerosList;
+  List<String>? pasajerosListAbreviados;
+  String? pasajerosMsg;
 
-  Pasajeros({
+  Pasajeros(
+      {this.pasajerosList = const [
+        "Yosbel Sosa",
+        "Eduardo Perez",
+        "Marlon Morales",
+        "Eduardo Hernandez",
+        "Leopoldo Lage",
+        "Asmel Lucena",
+        "Angel Santiago",
+        "Yosvel Camejo",
+        "Jose Cubilla",
+        "Norelvis",
+      ],
+      this.pasajerosMsg,
+      this.pasajerosListAbreviados = const [
+          "Y. Sosa",
+          "E. Perez T",
+          "Marlon",
+          "E. Hdez C",
+          "Lage",
+          "Asmel",
+          "A. Santiago",
+          "Y. Camejo",
+          "J. Cubilla",
+          "Norelvis",
+        ]
+      });
+}
 
-    this.pasajerosList = const [
-      "Yosbel Sosa",
-      "Eduardo Perez",
-      "Marlon Morales",
-      "Eduardo Hernandez",
-      "Leopoldo Lage",
-      "Asmel Lucena",
-      "Angel Santiago",
-      "Yosvel Camejo",
-      "Jose Cubilla",
-      "Norelvis",
-    ]
-  });
+class CheckBoxListModelo {
+  List<bool>? checkBoxList;
+
+  CheckBoxListModelo(
+      {this.checkBoxList});
 }

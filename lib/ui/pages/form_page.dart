@@ -34,6 +34,7 @@ class _FormularioState extends State<Formulario> {
     reporteController.reporte.horaLlegada = "__:__ PM";
     reporteController.reporte.fecha = "__/__";
     reporteController.odometroController.odometroController = TextEditingController(text: "");
+    reporteController.checkBoxListModelo.checkBoxList = [false,false,false,false,false,false,false,false,false,false];
 
     return SingleChildScrollView(
       child: Form(

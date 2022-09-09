@@ -43,6 +43,7 @@ class ReporteController {
 
   Pasajeros pasajeros = Pasajeros();
 
+  CheckBoxListModelo checkBoxListModelo = CheckBoxListModelo();
 
 }
 

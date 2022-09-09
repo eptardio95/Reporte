@@ -25,9 +25,11 @@ class _HomePageState extends State<HomePage> {
     await launch(uri);
   }
 
+  final List<String> pasajerosSeleccionadosList = [];
+
   @override
   void initState() {
-
+    reporteController.pasajeros.pasajerosMsg = "";
     // Map <String, String?> mapaReporte = {
     //   "Chapa": reporteController.reporte.chapa,
     //   "Odómetro": reporteController.reporte.odometro,
@@ -38,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     //   "Destinatario": reporteController.reporte.destinatario,
     // };
 
-        super.initState();
+    super.initState();
   }
 
   @override
@@ -60,6 +62,21 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context) {
             return FloatingActionButton(
               onPressed: () async {
+                final pasajerosSeleccionadosList = [];
+                for (var i = 0;
+                    i <
+                        reporteController
+                            .checkBoxListModelo.checkBoxList!.length;
+                    i++) {
+                  if (reporteController.checkBoxListModelo.checkBoxList![i] ==
+                      true) {
+                    pasajerosSeleccionadosList
+                        .add(reporteController.pasajeros.pasajerosListAbreviados![i]);
+                  }
+                }
+                reporteController.pasajeros.pasajerosMsg =
+                    "Pas: ${pasajerosSeleccionadosList.join(', ')}";
+
                 /// Show dialog ///
                 await showDialog<String>(
                   context: context,
@@ -76,22 +93,25 @@ class _HomePageState extends State<HomePage> {
                         onPressed: () => {
                           Navigator.pop(context),
                           print("chapa ${reporteController.reporte.chapa}"),
-                          print("odometro ${reporteController.reporte.odometro}"),
-                          print(" hora i${reporteController.reporte.horaInicio}"),
-                          print("hora f ${reporteController.reporte.horaLlegada}"),
-                          print("destin ${reporteController.reporte.destinatario}"),
-                          print("recorr ${reporteController.reporte.recorrido}"),
-
+                          print(
+                              "odometro ${reporteController.reporte.odometro}"),
+                          print(
+                              " hora i${reporteController.reporte.horaInicio}"),
+                          print(
+                              "hora f ${reporteController.reporte.horaLlegada}"),
+                          print(
+                              "destin ${reporteController.reporte.destinatario}"),
+                          print(
+                              "recorr ${reporteController.reporte.recorrido}"),
                           if (reporteController.validateIsEmpty())
                             {print("Existe algun campo vacio")}
                           else
                             {
                               print(reporteController.reporte.fecha.toString()),
-
                               msg =
-                              """${reporteController.reporte.fecha}\nChapa: ${reporteController.reporte.chapa}\nOdometro: ${reporteController.reporte.odometro}\nH. Inicio: ${reporteController.reporte.horaInicio}\nH. Llegada: ${reporteController.reporte.horaLlegada}\nRecorrido: ${reporteController.reporte.recorrido}""",
-
-                            _textMe(reporteController.reporte.destinatario, msg),
+                                  """${reporteController.reporte.fecha}\nChapa: ${reporteController.reporte.chapa}\nOdometro: ${reporteController.reporte.odometro}\nH. Inicio: ${reporteController.reporte.horaInicio}\nH. Llegada: ${reporteController.reporte.horaLlegada}\n${reporteController.pasajeros.pasajerosMsg}\nRecorr: ${reporteController.reporte.recorrido}""",
+                              _textMe(
+                                  reporteController.reporte.destinatario, msg),
                             }
                         },
                         child: const Text('Enviar'),
