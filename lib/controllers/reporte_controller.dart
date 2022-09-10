@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:inicial/models/reporte_modelo.dart';
 import 'package:inicial/services/void_state_validator.dart';
 
-
 class ReporteController {
-
-
   static final ReporteController _instance = ReporteController._internal();
 
-  factory ReporteController(){
+  factory ReporteController() {
     return _instance;
   }
 
@@ -25,26 +22,23 @@ class ReporteController {
   TextEditControllerModelo odometroController = TextEditControllerModelo();
 
   bool validateIsEmpty() {
-    if (reporte.chapa != null &&
-        reporte.odometro != null &&
-        reporte.fecha != null &&
-        reporte.horaInicio != null &&
-        reporte.horaLlegada != null &&
-        reporte.destinatario != null &&
-        reporte.destinatario != null) {
-      print("Ninguno esta vacio");
+    if (["B223108", "B223105", "B222133", "B237834"].contains(reporte.chapa) &&
+        reporte.odometro!.isNotEmpty &&
+        reporte.fecha != "__/__" &&
+        reporte.horaInicio != "__:__ AM" &&
+        reporte.horaLlegada != "__:__ PM" &&
+        ["Eduardo", "Marlon", "Asmel", "Yosbel"]
+            .contains(reporte.destinatario) &&
+        reporte.recorrido!.isNotEmpty) {
 
-      return false;
+      return true;
     } else {
       print("Aun alguno esta vacio EMPTY");
-      return true;
+      return false;
     }
   }
 
   Pasajeros pasajeros = Pasajeros();
 
   CheckBoxListModelo checkBoxListModelo = CheckBoxListModelo();
-
 }
-
-

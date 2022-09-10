@@ -70,8 +70,8 @@ class _HomePageState extends State<HomePage> {
                     i++) {
                   if (reporteController.checkBoxListModelo.checkBoxList![i] ==
                       true) {
-                    pasajerosSeleccionadosList
-                        .add(reporteController.pasajeros.pasajerosListAbreviados![i]);
+                    pasajerosSeleccionadosList.add(reporteController
+                        .pasajeros.pasajerosListAbreviados![i]);
                   }
                 }
                 reporteController.pasajeros.pasajerosMsg =
@@ -92,27 +92,17 @@ class _HomePageState extends State<HomePage> {
                       TextButton(
                         onPressed: () => {
                           Navigator.pop(context),
-                          print("chapa ${reporteController.reporte.chapa}"),
-                          print(
-                              "odometro ${reporteController.reporte.odometro}"),
-                          print(
-                              " hora i${reporteController.reporte.horaInicio}"),
-                          print(
-                              "hora f ${reporteController.reporte.horaLlegada}"),
-                          print(
-                              "destin ${reporteController.reporte.destinatario}"),
-                          print(
-                              "recorr ${reporteController.reporte.recorrido}"),
-                          if (reporteController.validateIsEmpty())
-                            {print("Existe algun campo vacio")}
-                          else
+                          if (reporteController.validateIsEmpty() && pasajerosSeleccionadosList.isNotEmpty)
                             {
+                              print("Todos estan llenos"),
                               print(reporteController.reporte.fecha.toString()),
                               msg =
-                                  """${reporteController.reporte.fecha}\nChapa: ${reporteController.reporte.chapa}\nOdometro: ${reporteController.reporte.odometro}\nH. Inicio: ${reporteController.reporte.horaInicio}\nH. Llegada: ${reporteController.reporte.horaLlegada}\n${reporteController.pasajeros.pasajerosMsg}\nRecorr: ${reporteController.reporte.recorrido}""",
+                                  """${reporteController.reporte.fecha}\nChapa: ${reporteController.reporte.chapa}\nOdom: ${reporteController.reporte.odometro}\nH. Inicio: ${reporteController.reporte.horaInicio}\nH. Llegada: ${reporteController.reporte.horaLlegada}\n${reporteController.pasajeros.pasajerosMsg}\nRecorr: ${reporteController.reporte.recorrido}""",
                               _textMe(
                                   reporteController.reporte.destinatario, msg),
                             }
+                          else
+                            {print("Alguno esta vacio")}
                         },
                         child: const Text('Enviar'),
                       ),

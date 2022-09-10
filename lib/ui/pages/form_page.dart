@@ -30,9 +30,13 @@ class _FormularioState extends State<Formulario> {
 
   @override
   Widget build(BuildContext context) {
+    // reporteController.reporte.chapa = "";
+    reporteController.reporte.odometro = "";
+    reporteController.reporte.fecha = "__/__";
     reporteController.reporte.horaInicio = "__:__ AM";
     reporteController.reporte.horaLlegada = "__:__ PM";
-    reporteController.reporte.fecha = "__/__";
+    // reporteController.reporte.destinatario = "";
+    reporteController.reporte.recorrido = "";
     reporteController.odometroController.odometroController = TextEditingController(text: "");
     reporteController.checkBoxListModelo.checkBoxList = [false,false,false,false,false,false,false,false,false,false];
 
