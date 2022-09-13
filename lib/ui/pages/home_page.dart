@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inicial/controllers/reporte_controller.dart';
-import 'package:inicial/ui/pages/form_page.dart';
+import 'package:inicial/services/void_state_validator.dart';
+import 'package:inicial/ui/widgets/formulario_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../models/reporte_modelo.dart';
 
@@ -10,17 +11,44 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  GlobalKey<ScaffoldState> _key = GlobalKey();
+
   String titulo = "Reporte App";
 
   final reporteController = ReporteController();
-  late Map<String, String?> mapaReporte;
-  late String msg;
 
-  _textMe(msg) async {
-    String uri =
-        'sms:${reporteController.telefonos.telefonoEduardito}?body=$msg';
+  final Formulario formulario = Formulario();
 
-    await launch(uri);
+  late var colorCheckIcon;
+
+  @override
+  void initState() {
+    reporteController.pasajeros.pasajerosMsg = "";
+    colorCheckIcon = Colors.white;
+    // Map <String, String?> mapaReporte = {
+    //   "Chapa": reporteController.reporte.chapa,
+    //   "Odómetro": reporteController.reporte.odometro,
+    //   "Fecha": reporteController.reporte.fecha,
+    //   "Recorrido": reporteController.reporte.recorrido,
+    //   "Hora de Inicio": reporteController.reporte.horaInicio,
+    //   "Hora de Llegada": reporteController.reporte.horaLlegada,
+    //   "Destinatario": reporteController.reporte.destinatario,
+    // };
+
+    super.initState();
+  }
+
+  /// SnackBar Function
+  snackBar(var text, var color, var icono) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Row(
+        children: [
+          Icon(icono, color: color, size: 30),
+          SizedBox(width: 6),
+          Text(text, style: TextStyle(color: color, fontSize: 18)),
+        ],
+      ),
+    ));
   }
 
   @override
@@ -36,6 +64,28 @@ class _HomePageState extends State<HomePage> {
           ]),
         ),
         appBar: AppBar(
+          actions: [
+            Builder(builder: (context) {
+              return InkWell(
+                child: Icon(
+                  Icons.checklist_rtl,
+                  color: colorCheckIcon,
+                  size: 30,
+                ),
+                onTap: () {
+                  if (reporteController.validateIsEmpty()) {
+                    snackBar(
+                        "Datos verificados!!!", Colors.green, Icons.gpp_good);
+                  } else {
+                    snackBar(
+                        "Faltan datos!!!", Colors.red, Icons.warning_amber);
+                  }
+                  ;
+                },
+              );
+            }),
+            SizedBox(width: 15)
+          ],
           title: Text(titulo),
         ),
         floatingActionButton: Builder(
@@ -43,43 +93,41 @@ class _HomePageState extends State<HomePage> {
             return FloatingActionButton(
               onPressed: () async {
                 /// Show dialog ///
-
                 await showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     title: const Text('Confirmación de Reporte'),
-                    content:
-                        const Text('Está seguro de enviar el reporte vía SMS?'),
+                    content: const Text('Algún campo sin llenar?'),
                     actions: <Widget>[
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: const Text('Cancelar'),
+                        child: Text('Cancelar', style: Theme.of(context).textTheme.button),
                       ),
                       TextButton(
                         onPressed: () => {
-                          Navigator.pop(context),
-                          _textMe(msg)},
-                        child: const Text('Enviar'),
+                          if (reporteController.validateIsEmpty())
+                            // && pasajerosSeleccionadosList.isNotEmpty)
+                            {
+                              print("Todos estan llenos"),
+                              Navigator.pushNamed(context, '/pasajeros_page'),
+                            }
+                          else
+                            {
+                              print("Alguno esta vacio"),
+                              Navigator.pop(context),
+                              snackBar("Faltan datos!!!", Colors.red,
+                                  Icons.warning_amber)
+                            }
+                        },
+                        child: Text('Enviar', style: Theme.of(context).textTheme.button),
                       ),
                     ],
                   ),
                 );
-                mapaReporte = {
-                  "Chapa": reporteController.reporte.chapa,
-                  "Odómetro": reporteController.reporte.odometro,
-                  "Fecha": reporteController.reporte.fecha,
-                  "Recorrido": reporteController.reporte.recorrido,
-                  "Hora de Inicio": reporteController.reporte.horaInicio,
-                  "Hora de Llegada": reporteController.reporte.horaLlegada,
-                  "Destinatario": reporteController.reporte.destinatario,
-                };
-
-                msg =
-                    """Fecha: ${mapaReporte["Fecha"]}\nChapa: ${mapaReporte["Chapa"]}\nOdómetro: ${mapaReporte["Odómetro"]}\nHora de Inicio: ${mapaReporte["Hora de Inicio"]}\nHora de llegada: ${mapaReporte["Hora de llegada"]}\nRecorrido: ${mapaReporte["Recorrido"]}\nDestinatario: ${mapaReporte["Destinatario"]}""";
-                print(msg);
               },
               tooltip: 'Increment',
-              child: const Icon(Icons.add),
+              child: Icon(Icons.people_rounded),
+              backgroundColor: Theme.of(context).primaryColor,
             );
           },
         ),
