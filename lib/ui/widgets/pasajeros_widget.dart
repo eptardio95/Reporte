@@ -24,7 +24,6 @@ class _PasajerosWidgetState extends State<PasajerosWidget> {
           Text("Pasajeros:",
               style: TextStyle(
                   color: Theme.of(context).primaryColor, fontSize: 20)),
-
           PasajerosListViewWidget(),
         ],
       ),
