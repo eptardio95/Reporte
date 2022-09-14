@@ -61,15 +61,15 @@ class Pasajeros {
       ],
       this.pasajerosMsg,
       this.pasajerosListAbreviados = const [
-          "Y. Sosa",
-          "E. Perez T",
+          "Y.Sosa",
+          "E.Perez T",
           "Marlon",
-          "E. Hdez C",
+          "E.Hdez C",
           "Lage",
           "Asmel",
-          "A. Santiago",
-          "Y. Camejo",
-          "J. Cubilla",
+          "A.Santiago",
+          "Y.Camejo",
+          "J.Cubilla",
           "Norelvis",
         ]
       });
@@ -81,3 +81,4 @@ class CheckBoxListModelo {
   CheckBoxListModelo(
       {this.checkBoxList});
 }
+

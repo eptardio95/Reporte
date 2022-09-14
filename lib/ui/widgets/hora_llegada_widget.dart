@@ -25,10 +25,7 @@ class _HoraLlegadaWidgetState extends State<HoraLlegadaWidget> {
           children: [
             Text(
               "Hora de Llegada",
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 16.0,
-              ),
+              style: Theme.of(context).textTheme.button,
               textAlign: TextAlign.start,
             ),
           ],
@@ -38,7 +35,7 @@ class _HoraLlegadaWidgetState extends State<HoraLlegadaWidget> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Icon(Icons.access_time_filled,
-                color: Colors.blue, size: 40),
+                color: Theme.of(context).primaryColor, size: 40),
             // SizedBox(width: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,29 +70,16 @@ class _HoraLlegadaWidgetState extends State<HoraLlegadaWidget> {
                             reporteController.reporte.horaLlegada =
                                 value.format(context).toString();
                           });
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Colors.blue,
-                              content: Text(
-                                "Hora de Llegada agregada correctamente",
-                                style: TextStyle(fontSize: 14),
-                              ),
-                              action: SnackBarAction(
-                                  label: 'OK',
-                                  textColor: Colors.white,
-                                  onPressed: () {}),
-                            ),
-                          );
                         }
                       });
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: const [
-                        Icon(Icons.nights_stay),
+                      children: [
+                        Icon(Icons.nights_stay, color: Theme.of(context).primaryColor),
                         Text(
                           'Seleccionar Hora',
-                          style: TextStyle(fontSize: 16.0),
+                          style: Theme.of(context).textTheme.button,
                         ),
                       ],
                     ),

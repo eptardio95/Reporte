@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:inicial/controllers/reporte_controller.dart';
 import 'package:inicial/services/void_state_validator.dart';
-import 'package:inicial/ui/pages/form_page.dart';
+import 'package:inicial/ui/widgets/formulario_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../models/reporte_modelo.dart';
 
@@ -11,25 +11,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  GlobalKey<ScaffoldState> _key = GlobalKey();
+
   String titulo = "Reporte App";
 
   final reporteController = ReporteController();
 
-  String? msg;
   final Formulario formulario = Formulario();
 
-  _textMe(numero, msg) async {
-    print(reporteController.telefonos.agenda![numero]);
-    String uri =
-        'sms:${reporteController.telefonos.agenda![numero].toString()}?body=$msg';
-    await launch(uri);
-  }
-
-  final List<String> pasajerosSeleccionadosList = [];
+  late var colorCheckIcon;
 
   @override
   void initState() {
     reporteController.pasajeros.pasajerosMsg = "";
+    colorCheckIcon = Colors.white;
     // Map <String, String?> mapaReporte = {
     //   "Chapa": reporteController.reporte.chapa,
     //   "Odómetro": reporteController.reporte.odometro,
@@ -41,6 +36,19 @@ class _HomePageState extends State<HomePage> {
     // };
 
     super.initState();
+  }
+
+  /// SnackBar Function
+  snackBar(var text, var color, var icono) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Row(
+        children: [
+          Icon(icono, color: color, size: 30),
+          SizedBox(width: 6),
+          Text(text, style: TextStyle(color: color, fontSize: 18)),
+        ],
+      ),
+    ));
   }
 
   @override
@@ -56,62 +64,70 @@ class _HomePageState extends State<HomePage> {
           ]),
         ),
         appBar: AppBar(
+          actions: [
+            Builder(builder: (context) {
+              return InkWell(
+                child: Icon(
+                  Icons.checklist_rtl,
+                  color: colorCheckIcon,
+                  size: 30,
+                ),
+                onTap: () {
+                  if (reporteController.validateIsEmpty()) {
+                    snackBar(
+                        "Datos verificados!!!", Colors.green, Icons.gpp_good);
+                  } else {
+                    snackBar(
+                        "Faltan datos!!!", Colors.red, Icons.warning_amber);
+                  }
+                  ;
+                },
+              );
+            }),
+            SizedBox(width: 15)
+          ],
           title: Text(titulo),
         ),
         floatingActionButton: Builder(
           builder: (BuildContext context) {
             return FloatingActionButton(
               onPressed: () async {
-                final pasajerosSeleccionadosList = [];
-                for (var i = 0;
-                    i <
-                        reporteController
-                            .checkBoxListModelo.checkBoxList!.length;
-                    i++) {
-                  if (reporteController.checkBoxListModelo.checkBoxList![i] ==
-                      true) {
-                    pasajerosSeleccionadosList.add(reporteController
-                        .pasajeros.pasajerosListAbreviados![i]);
-                  }
-                }
-                reporteController.pasajeros.pasajerosMsg =
-                    "Pas: ${pasajerosSeleccionadosList.join(', ')}";
-
                 /// Show dialog ///
                 await showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     title: const Text('Confirmación de Reporte'),
-                    content:
-                        const Text('Está seguro de enviar el reporte vía SMS?'),
+                    content: const Text('Algún campo sin llenar?'),
                     actions: <Widget>[
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: const Text('Cancelar'),
+                        child: Text('Cancelar', style: Theme.of(context).textTheme.button),
                       ),
                       TextButton(
                         onPressed: () => {
-                          Navigator.pop(context),
-                          if (reporteController.validateIsEmpty() && pasajerosSeleccionadosList.isNotEmpty)
+                          if (reporteController.validateIsEmpty())
+                            // && pasajerosSeleccionadosList.isNotEmpty)
                             {
                               print("Todos estan llenos"),
-                              print(reporteController.reporte.fecha.toString()),
-                              msg =
-                                  """${reporteController.reporte.fecha}\nChapa: ${reporteController.reporte.chapa}\nOdom: ${reporteController.reporte.odometro}\nH. Inicio: ${reporteController.reporte.horaInicio}\nH. Llegada: ${reporteController.reporte.horaLlegada}\n${reporteController.pasajeros.pasajerosMsg}\nRecorr: ${reporteController.reporte.recorrido}""",
-                              _textMe(
-                                  reporteController.reporte.destinatario, msg),
+                              Navigator.pushNamed(context, '/pasajeros_page'),
                             }
                           else
-                            {print("Alguno esta vacio")}
+                            {
+                              print("Alguno esta vacio"),
+                              Navigator.pop(context),
+                              snackBar("Faltan datos!!!", Colors.red,
+                                  Icons.warning_amber)
+                            }
                         },
-                        child: const Text('Enviar'),
+                        child: Text('Enviar', style: Theme.of(context).textTheme.button),
                       ),
                     ],
                   ),
                 );
               },
               tooltip: 'Increment',
-              child: const Icon(Icons.message_sharp),
+              child: Icon(Icons.people_rounded),
+              backgroundColor: Theme.of(context).primaryColor,
             );
           },
         ),

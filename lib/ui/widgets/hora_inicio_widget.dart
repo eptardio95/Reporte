@@ -25,10 +25,7 @@ class _HoraInicioWidgetState extends State<HoraInicioWidget> {
           children: [
             Text(
               "Hora de Inicio",
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 16.0,
-              ),
+              style: Theme.of(context).textTheme.button,
               textAlign: TextAlign.start,
             ),
           ],
@@ -37,7 +34,7 @@ class _HoraInicioWidgetState extends State<HoraInicioWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Icon(Icons.access_time, color: Colors.blue, size: 40),
+            Icon(Icons.access_time, color: Theme.of(context).primaryColor, size: 40),
             // SizedBox(width: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,6 +58,7 @@ class _HoraInicioWidgetState extends State<HoraInicioWidget> {
                     style: OutlinedButton.styleFrom(
                         side: BorderSide(color: Colors.grey)),
                     onPressed: () {
+
                       // final DateTime now = DateTime.now();
                       showTimePicker(
                         context: context,
@@ -72,29 +70,16 @@ class _HoraInicioWidgetState extends State<HoraInicioWidget> {
                             reporteController.reporte.horaInicio =
                                 value.format(context).toString();
                           });
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Colors.blue,
-                              content: Text(
-                                "Hora de Inicio agregada correctamente",
-                                style: TextStyle(fontSize: 14),
-                              ),
-                              action: SnackBarAction(
-                                  label: 'OK',
-                                  textColor: Colors.white,
-                                  onPressed: () {}),
-                            ),
-                          );
                         }
                       });
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.wb_sunny),
+                        Icon(Icons.wb_sunny, color: Theme.of(context).primaryColor),
                         Text(
                           'Seleccionar Hora',
-                          style: TextStyle(fontSize: 16.0),
+                          style: Theme.of(context).textTheme.button,
                         ),
                       ],
                     ),

@@ -34,42 +34,32 @@ class _ChapaDropdownButtonWidgetState extends State<ChapaDropdownButtonWidget> {
     return Container(
       padding: EdgeInsets.all(3),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(4)
-      ),
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(4)),
       child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text("Chapa", style: TextStyle(color: Colors.blue, fontSize: 16.0)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                const Icon(Icons.abc, color: Colors.blue, size: 45),
-                SizedBox(
-                  width: 10.0,
-                ),
-                Expanded(
-                  child: DropdownButton<String>(
-                    alignment: Alignment.centerLeft,
-                    hint: const Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                          "Ingrese la chapa del vehículo                 ",
-                          style: TextStyle(color: Colors.grey)),
-                    ),
-                    value: reporteController.reporte.chapa,
-                    onChanged: (String? value) {
-                      if (value != null) {
-                        setState(() => reporteController.reporte.chapa = value);
-                        print(value);
-                      }
-                    },
-                    items: _dropDownChapaItems,
-                  ),
-                ),
-              ],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text("Chapa", style: Theme.of(context).textTheme.button),
+          DropdownButton<String>(
+            style: Theme.of(context).textTheme.button,
+            isExpanded: true,
+            alignment: Alignment.center,
+            hint: const Align(
+              alignment: Alignment.centerLeft,
+              child: Text("Ingrese la chapa del vehículo",
+                  style: TextStyle(color: Colors.grey)),
             ),
-          ]),
+            value: reporteController.reporte.chapa,
+            onChanged: (String? value) {
+              if (value != null) {
+                setState(() => reporteController.reporte.chapa = value);
+                print(value);
+              }
+            },
+            items: _dropDownChapaItems,
+          ),
+        ],
+      ),
     );
   }
 }

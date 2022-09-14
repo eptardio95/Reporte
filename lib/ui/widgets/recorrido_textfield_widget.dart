@@ -30,13 +30,13 @@ class _RecorridoTextfieldWidgetState extends State<RecorridoTextfieldWidget> {
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text("Recorrido",
-                style: TextStyle(color: Colors.blue, fontSize: 16.0)),
+            Text("Recorrido",
+                style: Theme.of(context).textTheme.button),
             TextField(
               maxLines: 2,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                   prefixIcon:
-                      Icon(Icons.route, color: Colors.blue, size: 45),
+                      Icon(Icons.route, color: Theme.of(context).primaryColor, size: 45),
                   // suffixIcon: const Icon(Icons.abc),
                   // labelText: 'Recorrido',
                   // border: OutlineInputBorder(
@@ -44,7 +44,9 @@ class _RecorridoTextfieldWidgetState extends State<RecorridoTextfieldWidget> {
                   //         BorderSide(color: Theme.of(context).primaryColor))
               ),
               onChanged: (value) {
-                reporteController.reporte.recorrido = value;
+                setState((){
+                  reporteController.reporte.recorrido = value;
+                });
               },
               controller: _recorridoController,
             ),

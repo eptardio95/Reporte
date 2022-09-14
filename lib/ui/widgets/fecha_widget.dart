@@ -24,10 +24,7 @@ class _FechaWidgetState extends State<FechaWidget> {
           children: [
             Text(
               "Fecha del Reporte",
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontSize: 16.0,
-              ),
+              style: Theme.of(context).textTheme.button,
               textAlign: TextAlign.start,
             ),
           ],
@@ -36,7 +33,7 @@ class _FechaWidgetState extends State<FechaWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Icon(Icons.calendar_month, color: Colors.blue, size: 35),
+            Icon(Icons.calendar_month, color: Theme.of(context).primaryColor, size: 35),
             // SizedBox(width: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,27 +69,16 @@ class _FechaWidgetState extends State<FechaWidget> {
                                 "${value.day}/${value.month}";
                           });
                           // final String date = DateFormat.yMMMd().format(_fromDate);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('Fecha seleccionada correctamente',
-                                  style: TextStyle(fontSize: 14)),
-                              backgroundColor: Colors.blue,
-                              action: SnackBarAction(
-                                  label: 'OK',
-                                  textColor: Colors.white,
-                                  onPressed: () {}),
-                            ),
-                          );
                         }
                       });
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(Icons.calendar_month),
+                        Icon(Icons.calendar_month,color: Theme.of(context).primaryColor),
                         Text(
                           'Seleccionar Fecha',
-                          style: TextStyle(fontSize: 16.0),
+                          style: Theme.of(context).textTheme.button,
                         ),
                       ],
                     ),

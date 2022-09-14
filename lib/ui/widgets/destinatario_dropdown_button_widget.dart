@@ -42,8 +42,9 @@ class _DestinatarioDropdownButtonWidgetState
         crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
         Text("Destinatario",
-            style: TextStyle(color: Colors.blue, fontSize: 16.0)),
+            style: Theme.of(context).textTheme.button),
         DropdownButton<String>(
+          style: Theme.of(context).textTheme.button,
           isExpanded: true,
           hint: Text("¿A quién va dirigido el parte?",
               style: TextStyle(color: Colors.grey)),

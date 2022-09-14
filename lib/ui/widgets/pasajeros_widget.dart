@@ -16,7 +16,6 @@ class _PasajerosWidgetState extends State<PasajerosWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
           border: Border.all(color: Theme.of(context).primaryColor)),
       padding: EdgeInsets.fromLTRB(6, 3, 6, 3),
       child: Column(
@@ -24,7 +23,7 @@ class _PasajerosWidgetState extends State<PasajerosWidget> {
         children: [
           Text("Pasajeros:",
               style: TextStyle(
-                  color: Theme.of(context).primaryColor, fontSize: 16)),
+                  color: Theme.of(context).primaryColor, fontSize: 20)),
 
           PasajerosListViewWidget(),
         ],

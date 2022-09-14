@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:inicial/controllers/reporte_controller.dart';
-import 'package:inicial/ui/pages/form_page.dart';
+import 'package:inicial/ui/widgets/formulario_widget.dart';
 
 class OdometroWidget extends StatefulWidget {
   const OdometroWidget({Key? key}) : super(key: key);
@@ -13,6 +13,8 @@ class OdometroWidget extends StatefulWidget {
 class _OdometroWidgetState extends State<OdometroWidget> {
   ReporteController reporteController = ReporteController();
 
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,21 +25,23 @@ class _OdometroWidgetState extends State<OdometroWidget> {
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text("Odómetro Final", style: const TextStyle(color: Colors.blue, fontSize: 16.0)),
+            Text("Odómetro Final", style: Theme.of(context).textTheme.button),
             TextFormField(
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                   prefixIcon:
-                      Icon(Icons.numbers, color: Colors.blue, size: 45),
+                      Icon(Icons.numbers, color: Theme.of(context).primaryColor, size: 45),
                   // suffixIcon: const Icon(Icons.abc),
                   // labelText: "Odómetro Final",
                   // border: OutlineInputBorder(
                   //     borderSide:
-                  //         BorderSide(color: Theme.of(context).primaryColor))
+                          // BorderSide(color: Theme.of(context).primaryColor))
               ),
               onChanged: (value) {
-                reporteController.reporte.odometro = value;
+                setState((){
+                  reporteController.reporte.odometro = value;
+                });
               },
               controller:
                   reporteController.odometroController.odometroController,

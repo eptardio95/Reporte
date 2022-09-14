@@ -6,10 +6,10 @@ import 'package:inicial/ui/widgets/destinatario_dropdown_button_widget.dart';
 import 'package:inicial/ui/widgets/pasajeros_widget.dart';
 import 'package:inicial/ui/widgets/recorrido_textfield_widget.dart';
 
-import '../widgets/fecha_widget.dart';
-import '../widgets/hora_inicio_widget.dart';
-import '../widgets/hora_llegada_widget.dart';
-import '../widgets/odometro_widget.dart';
+import 'fecha_widget.dart';
+import 'hora_inicio_widget.dart';
+import 'hora_llegada_widget.dart';
+import 'odometro_widget.dart';
 
 class Formulario extends StatefulWidget {
   Formulario({Key? key}) : super(key: key);
@@ -80,10 +80,6 @@ class _FormularioState extends State<Formulario> {
 
             ///Recorrido///
             RecorridoTextfieldWidget(),
-
-            SizedBox(height: 8.0),
-
-            PasajerosWidget(),
           ]),
         ),
       ),
