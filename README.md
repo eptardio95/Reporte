@@ -26,5 +26,7 @@
 
 
 Enlaces personales:
+
 LinkedIn => http://www.linkedin.com/in/eduardo-perez-tardio-a26953203
+
 Gmail    => eptardio@gmail.com
