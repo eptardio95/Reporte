@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inicial/controllers/reporte_controller.dart';
+import 'package:reporte/controllers/reporte_controller.dart';
 
 
 class HoraLlegadaWidget extends StatefulWidget {

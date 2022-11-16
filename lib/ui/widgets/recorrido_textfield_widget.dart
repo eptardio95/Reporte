@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inicial/controllers/reporte_controller.dart';
+import 'package:reporte/controllers/reporte_controller.dart';
 
 class RecorridoTextfieldWidget extends StatefulWidget {
   const RecorridoTextfieldWidget({Key? key}) : super(key: key);

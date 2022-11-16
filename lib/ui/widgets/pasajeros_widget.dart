@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inicial/ui/widgets/pasajeros_listview_widget.dart';
+import 'package:reporte/ui/widgets/pasajeros_listview_widget.dart';
 
 
 class PasajerosWidget extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inicial/models/reporte_modelo.dart';
-import 'package:inicial/services/void_state_validator.dart';
+import 'package:reporte/models/reporte_modelo.dart';
+import 'package:reporte/services/void_state_validator.dart';
 
 class ReporteController {
   static final ReporteController _instance = ReporteController._internal();

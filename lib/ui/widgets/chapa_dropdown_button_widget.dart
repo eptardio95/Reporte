@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inicial/controllers/reporte_controller.dart';
-import 'package:inicial/models/reporte_modelo.dart';
+import 'package:reporte/controllers/reporte_controller.dart';
+import 'package:reporte/models/reporte_modelo.dart';
 
 class ChapaDropdownButtonWidget extends StatefulWidget {
   const ChapaDropdownButtonWidget({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:inicial/controllers/reporte_controller.dart';
-import 'package:inicial/ui/widgets/formulario_widget.dart';
+import 'package:reporte/controllers/reporte_controller.dart';
+import 'package:reporte/ui/widgets/formulario_widget.dart';
 
 class OdometroWidget extends StatefulWidget {
   const OdometroWidget({Key? key}) : super(key: key);

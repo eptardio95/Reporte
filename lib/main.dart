@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:inicial/ui/pages/home_page.dart';
-import 'package:inicial/ui/pages/pasajeros_page.dart';
+import 'package:reporte/ui/pages/home_page.dart';
+import 'package:reporte/ui/pages/pasajeros_page.dart';
 import 'ui/pages/home_page.dart';
 
 void main() {

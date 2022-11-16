@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:inicial/controllers/reporte_controller.dart';
-import 'package:inicial/services/void_state_validator.dart';
-import 'package:inicial/ui/widgets/formulario_widget.dart';
+import 'package:reporte/controllers/reporte_controller.dart';
+import 'package:reporte/services/void_state_validator.dart';
+import 'package:reporte/ui/widgets/formulario_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../models/reporte_modelo.dart';
 

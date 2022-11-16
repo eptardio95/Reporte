@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 
-import 'package:inicial/main.dart';
+import 'package:reporte/main.dart';
 
 
 
